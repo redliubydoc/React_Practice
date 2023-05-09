@@ -1,5 +1,20 @@
 import React from "react";
 
+class ErrorComponent extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return( <>
+			<div>
+			{this.props.doesNotExist}
+			</div>
+		</>);
+	}
+}
+
 class Counter extends React.Component {
 
 	constructor(props) {
@@ -51,6 +66,14 @@ class Counter extends React.Component {
 		console.log("render()");
 		// console.log("render() :: state", this.state, " :: props", this.props);
 
+		if (this.state.error) {
+			return <>
+				<h1> Error </h1>
+				{this.state.error}
+				{this.state.info}
+			</>
+		}
+
 		return (<>
 			<button onClick={this.increment}> Increment </button>
 			<button onClick={this.decrement}> Decrement </button>
@@ -72,6 +95,14 @@ class Counter extends React.Component {
 
 		return true;
 	}
+
+	componentDidCatch(error, info) {
+		console.log("componentDidCatch()");
+		this.setState({error, info});
+	}
 }
 
-export default Counter;
+export {
+	Counter,
+	ErrorComponent
+};

@@ -1,6 +1,7 @@
 import React from "react";
 
-import Counter from "./components/Counter";
+import {Counter} from "./components/Counter";
+import {ErrorComponent} from "./components/Counter";
 
 class App extends React.Component {
 
@@ -11,7 +12,8 @@ class App extends React.Component {
     this.state = {
       mountCounter: true,
       random: Math.random(),
-      seed: 50
+      seed: 50,
+      showErrorComponent: false
     };
 
     this.mountCounter = () => this.setState({
@@ -29,6 +31,10 @@ class App extends React.Component {
     this.generateSeed = () => this.setState({
       seed: parseInt(Math.random() * 100)
     });
+
+    this.toggleError = () => this.setState({
+      showErrorComponent: !this.state.showErrorComponent
+    });
   }
 
   render() {
@@ -37,12 +43,16 @@ class App extends React.Component {
       <button onClick={this.unmountCounter} disabled={!this.state.mountCounter}> Unmount </button>
       <button onClick={this.generateRandom}> Generate Random </button>
       <button onClick={this.generateSeed}> Generate Seed </button>
+      <button onClick={this.toggleError}> Toggle Error </button>
 
       <div id="counter-placeholder">{ 
-        <Counter 
+          this.state.mountCounter && <Counter 
           random={this.state.random}
           seed={this.state.seed}
         />
+      }</div>
+      <div className="error-placeholder">{
+        this.state.showErrorComponent && <ErrorComponent/>
       }</div>
     </>);
   }
