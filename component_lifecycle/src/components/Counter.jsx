@@ -1,108 +1,95 @@
 import React from "react";
 
-class ErrorComponent extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return( <>
-			<div>
-			{this.props.doesNotExist}
-			</div>
-		</>);
-	}
-}
-
 class Counter extends React.Component {
 
 	constructor(props) {
 
-		console.log("constructor()");
+		console.log("\tconstructor() @ Child");
 
 		super(props);
 
 		this.state = {
-			counter: 0
+			counter: 0,
+			seed: 0,
+			random: Math.random()
 		};
 
-		this.increment = () => this.setState({
-			counter: this.state.counter + 1
-		})
+		this.increment = () => this.setState({counter: this.state.counter + 1});
 
-		this.decrement = () => this.setState({
-			counter: this.state.counter - 1
-		})
+		this.decrement = () => this.setState({counter: this.state.counter - 1});
+	
+		this.changeRandom = () => this.setState({random: Math.random()});
 	}
 
+	// called before calling render except the very first render
+	shouldComponentUpdate(nextProps, nextState) {
+
+		console.log("\tshouldComponentUpdate() @ Child");
+
+		if (this.state.random !== nextState.random) {
+			return false;
+		}
+		return true;
+	}
+
+	// called before calling render and component should update
 	static getDerivedStateFromProps(props, state) {
+		
+		console.log("\tgetDerivedStateFromProps() @ Child");
 
-		console.log("getDerivedStateFromProps()");
-
-		if (props.seed) {
+		if (props.seed && state.seed !== props.seed) {
 			return {
-				counter: props.seed
-			};	
+				seed: props.seed
+			};
 		}
 
 		return null;
 	}
 
-	componentDidMount() {
-		console.log("componentDidMount()");
-	}
+	// invoked right before the most recently rendered output is committed
+	getSnapshotBeforeUpdate(prevProps, prevState) {
 
-	componentDidUpdate(prevProps, prevState, snapShot) {
-		console.log("componentDidUpdate()");
+		console.log("\tgetSnapshotBeforeUpdate() @ Child");
+		
+		return null;
 	}
-
-	componentWillUnmount() {
-		console.log("componentWillUnmount()");
-	}
-
+	
 	render() {
 
-		console.log("render()");
-		// console.log("render() :: state", this.state, " :: props", this.props);
+		console.log("\trender() @ Child");
+		// console.log("\trender() @ Child :: state", this.state, "props", this.props);
+		console.log("\t--------------------------------------------");
 
-		if (this.state.error) {
-			return <>
-				<h1> Error </h1>
-				{this.state.error}
-				{this.state.info}
-			</>
-		}
 
 		return (<>
-			<button onClick={this.increment}> Increment </button>
-			<button onClick={this.decrement}> Decrement </button>
+			<button onClick={this.decrement}> Decrement @ Child </button>
+			<button onClick={this.increment}> Increment @ Child </button>
+			<button onClick={this.changeRandom}> Change Random @ Child </button>
+			{/* <button onClick={this.triggerError}> Trigger Error @ Child </button> */}
 
 			<div className="counter">
-				<h1> counter: { this.state.counter } </h1>
+				<h1> counter: { this.state.seed + this.state.counter } </h1>
 			</div>
 		</>);
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-
-		console.log("shouldComponentUpdate()");
-		
-		// ignore this case
-		if (nextProps.random && this.props.random !== nextProps.random) {			
-			return false;
-		}
-
-		return true;
+	// called after very first render
+	componentDidMount() {
+		console.log("\tcomponentDidMount() @ Child");
 	}
 
-	componentDidCatch(error, info) {
-		console.log("componentDidCatch()");
-		this.setState({error, info});
+	// called after every render except the very first one
+	componentDidUpdate(prevProps, prevState, snapShot) {
+		console.log("\tcomponentDidUpdate() @ Child");
 	}
+
+	componentWillUnmount() {
+		console.log("\tcomponentWillUnmount() @ Child");
+	}
+
+	// componentDidCatch(error, info) {
+	// 	console.log("\tcomponentDidCatch() @ Child");
+	// }
 }
 
-export {
-	Counter,
-	ErrorComponent
-};
+export {Counter};

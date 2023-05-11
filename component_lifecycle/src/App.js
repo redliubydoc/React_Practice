@@ -1,7 +1,6 @@
 import React from "react";
 
 import {Counter} from "./components/Counter";
-import {ErrorComponent} from "./components/Counter";
 
 class App extends React.Component {
 
@@ -10,49 +9,37 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      mountCounter: true,
+      mountCounterComponent: true,
       random: Math.random(),
-      seed: 50,
-      showErrorComponent: false
+      seed: 0
     };
 
-    this.mountCounter = () => this.setState({
-      mountCounter: true
-    });
+    this.mountCounterComponent = () => this.setState({mountCounterComponent: true});
 
-    this.unmountCounter = () => this.setState({
-      mountCounter: false
-    });
+    this.unmountCounterComponent = () => this.setState({mountCounterComponent: false});
 
-    this.generateRandom = () => this.setState({
-      random: Math.random()
-    });
+    this.changeState = () => this.setState({random: Math.random()});
 
-    this.generateSeed = () => this.setState({
-      seed: parseInt(Math.random() * 100)
-    });
-
-    this.toggleError = () => this.setState({
-      showErrorComponent: !this.state.showErrorComponent
-    });
+    this.generateSeed = () => this.setState({seed: parseInt(Math.random() * 100)});
   }
 
   render() {
-    return (<>
-      <button onClick={this.mountCounter} disabled={this.state.mountCounter}> Mount </button>
-      <button onClick={this.unmountCounter} disabled={!this.state.mountCounter}> Unmount </button>
-      <button onClick={this.generateRandom}> Generate Random </button>
-      <button onClick={this.generateSeed}> Generate Seed </button>
-      <button onClick={this.toggleError}> Toggle Error </button>
+    
+    console.log("--------------------------------------------");
+    console.log("render() @ Parent");
+    console.log("--------------------------------------------");
 
-      <div id="counter-placeholder">{ 
-          this.state.mountCounter && <Counter 
-          random={this.state.random}
+    return (<>
+      <button onClick={this.mountCounterComponent} disabled={this.state.mountCounterComponent}> Mount @ Parent </button>
+      <button onClick={this.unmountCounterComponent} disabled={!this.state.mountCounterComponent}> Unmount @ Parent </button>
+      <button onClick={this.changeState}> Change State @ Parent </button>
+      <button onClick={this.generateSeed}> Generate Seed @ Parent </button>
+      {/* <button onClick={this.triggerError}> Trigger Error @ Parent </button> */}
+
+      <div id="counter-component-placeholder">{ 
+          this.state.mountCounterComponent && <Counter 
           seed={this.state.seed}
         />
-      }</div>
-      <div className="error-placeholder">{
-        this.state.showErrorComponent && <ErrorComponent/>
       }</div>
     </>);
   }
