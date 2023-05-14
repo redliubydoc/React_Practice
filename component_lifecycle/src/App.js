@@ -1,114 +1,48 @@
 import React from "react";
 
-// class Error extends React.Component {
-	
-// 	constructor(props) {
-// 		super(props);
-// 	}
+import {Counter} from "./components/Counter";
 
-// 	render() {
-// 		return (<>
-// 			{/* cause of error */}
-// 			{doesNotExist}
+class App extends React.Component {
 
-// 			<div>
-// 				<h1> Error! </h1>
-// 			</div>
-// 		</>);
-// 	}
-// }
+  constructor(props) {
 
-class Counter extends React.Component {
+    super(props);
 
-	// called only during mounting
-	constructor(props) {
+    this.state = {
+      mountCounterComponent: true,
+      random: Math.random(),
+      seed: 0
+    };
 
-		console.log("\tconstructor() @ Child");
+    this.mountCounterComponent = () => this.setState({mountCounterComponent: true});
 
-		super(props);
+    this.unmountCounterComponent = () => this.setState({mountCounterComponent: false});
 
-		this.state = {
-			counter: 0,
-			seed: 0,
-			random: Math.random()
-		};
+    this.changeState = () => this.setState({random: Math.random()});
 
-		this.increment = () => this.setState({counter: this.state.counter + 1});
+    this.generateSeed = () => this.setState({seed: parseInt(Math.random() * 100)});
+  }
 
-		this.decrement = () => this.setState({counter: this.state.counter - 1});
-	
-		this.changeRandom = () => this.setState({random: Math.random()});
-	}
+  render() {
+    
+    console.log("--------------------------------------------");
+    console.log("render() @ Parent");
+    console.log("--------------------------------------------");
 
-	// called before calling shouldComponentUpdate() and render()
-	static getDerivedStateFromProps(props, state) {
-		
-		console.log("\tgetDerivedStateFromProps() @ Child");
+    return (<>
+      <button onClick={this.mountCounterComponent} disabled={this.state.mountCounterComponent}> Mount Child @ Parent </button>
+      <button onClick={this.unmountCounterComponent} disabled={!this.state.mountCounterComponent}> Unmount Child @ Parent </button>
+      <button onClick={this.changeState}> Change State @ Parent </button>
+      <button onClick={this.generateSeed}> Generate Seed @ Parent </button>
+      {/* <button onClick={this.triggerError}> Trigger Error @ Parent </button> */}
 
-		if (props.seed && state.seed !== props.seed) {
-			return {
-				seed: props.seed
-			};
-		}
-
-		return null;
-	}
-
-	// called before calling render except the very first render
-	shouldComponentUpdate(nextProps, nextState) {
-		if (this.state.random !== nextState.random) {
-			console.log("\tshouldComponentUpdate() @ Child :: NO");
-			return false;
-		}
-		console.log("\tshouldComponentUpdate() @ Child :: YES");
-		return true;
-	}
-
-	// invoked right before the most recently rendered output is committed except the very first one
-	getSnapshotBeforeUpdate(prevProps, prevState) {
-		console.log("\tgetSnapshotBeforeUpdate() @ Child :: prevProps", prevProps, "prevState", prevState);
-		return null;
-	}
-	
-	render() {
-
-		console.log("\trender() @ Child");
-		// console.log("\trender() @ Child :: state", this.state, "props", this.props);
-		console.log("\t--------------------------------------------");
-
-
-		return (<>
-			<button onClick={this.decrement}> Decrement @ Child </button>
-			<button onClick={this.increment}> Increment @ Child </button>
-			<button onClick={this.changeRandom}> Change Random @ Child </button>
-			{/* <button onClick={this.triggerError}> Trigger Error @ Child </button> */}
-
-			<div className="counter">
-				<h1> counter: { this.state.seed + this.state.counter } </h1>
-			</div>
-			{/* <div id="error-component-placeholder">
-				<Error/>
-			</div> */}
-		</>);
-	}
-
-	// called after very first render
-	componentDidMount() {
-		console.log("\tcomponentDidMount() @ Child");
-	}
-
-	// called after every render except the very first one
-	componentDidUpdate(prevProps, prevState, snapShot) {
-		console.log("\tcomponentDidUpdate() @ Child");
-	}
-
-	componentWillUnmount() {
-		console.log("\tcomponentWillUnmount() @ Child");
-	}
-
-	// componentDidCatch(error, info) {
-	// 	console.log("\tcomponentDidCatch() @ Child :: error", error, "info", info);
-	// }
+      <div id="counter-component-placeholder">{ 
+          this.state.mountCounterComponent && <Counter 
+          seed={this.state.seed}
+        />
+      }</div>
+    </>);
+  }
 }
 
-export {Counter};
+export default App;
