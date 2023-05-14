@@ -1,7 +1,26 @@
 import React from "react";
 
+// class Error extends React.Component {
+	
+// 	constructor(props) {
+// 		super(props);
+// 	}
+
+// 	render() {
+// 		return (<>
+// 			{/* cause of error */}
+// 			{doesNotExist}
+
+// 			<div>
+// 				<h1> Error! </h1>
+// 			</div>
+// 		</>);
+// 	}
+// }
+
 class Counter extends React.Component {
 
+	// called only during mounting
 	constructor(props) {
 
 		console.log("\tconstructor() @ Child");
@@ -21,18 +40,7 @@ class Counter extends React.Component {
 		this.changeRandom = () => this.setState({random: Math.random()});
 	}
 
-	// called before calling render except the very first render
-	shouldComponentUpdate(nextProps, nextState) {
-
-		console.log("\tshouldComponentUpdate() @ Child");
-
-		if (this.state.random !== nextState.random) {
-			return false;
-		}
-		return true;
-	}
-
-	// called before calling render and component should update
+	// called before calling shouldComponentUpdate() and render()
 	static getDerivedStateFromProps(props, state) {
 		
 		console.log("\tgetDerivedStateFromProps() @ Child");
@@ -46,11 +54,19 @@ class Counter extends React.Component {
 		return null;
 	}
 
-	// invoked right before the most recently rendered output is committed
-	getSnapshotBeforeUpdate(prevProps, prevState) {
+	// called before calling render except the very first render
+	shouldComponentUpdate(nextProps, nextState) {
+		if (this.state.random !== nextState.random) {
+			console.log("\tshouldComponentUpdate() @ Child :: NO");
+			return false;
+		}
+		console.log("\tshouldComponentUpdate() @ Child :: YES");
+		return true;
+	}
 
-		console.log("\tgetSnapshotBeforeUpdate() @ Child");
-		
+	// invoked right before the most recently rendered output is committed except the very first one
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		console.log("\tgetSnapshotBeforeUpdate() @ Child :: prevProps", prevProps, "prevState", prevState);
 		return null;
 	}
 	
@@ -70,6 +86,9 @@ class Counter extends React.Component {
 			<div className="counter">
 				<h1> counter: { this.state.seed + this.state.counter } </h1>
 			</div>
+			{/* <div id="error-component-placeholder">
+				<Error/>
+			</div> */}
 		</>);
 	}
 
@@ -88,7 +107,7 @@ class Counter extends React.Component {
 	}
 
 	// componentDidCatch(error, info) {
-	// 	console.log("\tcomponentDidCatch() @ Child");
+	// 	console.log("\tcomponentDidCatch() @ Child :: error", error, "info", info);
 	// }
 }
 
