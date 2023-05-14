@@ -1,48 +1,114 @@
 import React from "react";
 
-import {Counter} from "./components/Counter";
+// class Error extends React.Component {
+	
+// 	constructor(props) {
+// 		super(props);
+// 	}
 
-class App extends React.Component {
+// 	render() {
+// 		return (<>
+// 			{/* cause of error */}
+// 			{doesNotExist}
 
-  constructor(props) {
+// 			<div>
+// 				<h1> Error! </h1>
+// 			</div>
+// 		</>);
+// 	}
+// }
 
-    super(props);
+class Counter extends React.Component {
 
-    this.state = {
-      mountCounterComponent: true,
-      random: Math.random(),
-      seed: 0
-    };
+	// called only during mounting
+	constructor(props) {
 
-    this.mountCounterComponent = () => this.setState({mountCounterComponent: true});
+		console.log("\tconstructor() @ Child");
 
-    this.unmountCounterComponent = () => this.setState({mountCounterComponent: false});
+		super(props);
 
-    this.changeState = () => this.setState({random: Math.random()});
+		this.state = {
+			counter: 0,
+			seed: 0,
+			random: Math.random()
+		};
 
-    this.generateSeed = () => this.setState({seed: parseInt(Math.random() * 100)});
-  }
+		this.increment = () => this.setState({counter: this.state.counter + 1});
 
-  render() {
-    
-    console.log("--------------------------------------------");
-    console.log("render() @ Parent");
-    console.log("--------------------------------------------");
+		this.decrement = () => this.setState({counter: this.state.counter - 1});
+	
+		this.changeRandom = () => this.setState({random: Math.random()});
+	}
 
-    return (<>
-      <button onClick={this.mountCounterComponent} disabled={this.state.mountCounterComponent}> Mount @ Parent </button>
-      <button onClick={this.unmountCounterComponent} disabled={!this.state.mountCounterComponent}> Unmount @ Parent </button>
-      <button onClick={this.changeState}> Change State @ Parent </button>
-      <button onClick={this.generateSeed}> Generate Seed @ Parent </button>
-      {/* <button onClick={this.triggerError}> Trigger Error @ Parent </button> */}
+	// called before calling shouldComponentUpdate() and render()
+	static getDerivedStateFromProps(props, state) {
+		
+		console.log("\tgetDerivedStateFromProps() @ Child");
 
-      <div id="counter-component-placeholder">{ 
-          this.state.mountCounterComponent && <Counter 
-          seed={this.state.seed}
-        />
-      }</div>
-    </>);
-  }
+		if (props.seed && state.seed !== props.seed) {
+			return {
+				seed: props.seed
+			};
+		}
+
+		return null;
+	}
+
+	// called before calling render except the very first render
+	shouldComponentUpdate(nextProps, nextState) {
+		if (this.state.random !== nextState.random) {
+			console.log("\tshouldComponentUpdate() @ Child :: NO");
+			return false;
+		}
+		console.log("\tshouldComponentUpdate() @ Child :: YES");
+		return true;
+	}
+
+	// invoked right before the most recently rendered output is committed except the very first one
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		console.log("\tgetSnapshotBeforeUpdate() @ Child :: prevProps", prevProps, "prevState", prevState);
+		return null;
+	}
+	
+	render() {
+
+		console.log("\trender() @ Child");
+		// console.log("\trender() @ Child :: state", this.state, "props", this.props);
+		console.log("\t--------------------------------------------");
+
+
+		return (<>
+			<button onClick={this.decrement}> Decrement @ Child </button>
+			<button onClick={this.increment}> Increment @ Child </button>
+			<button onClick={this.changeRandom}> Change Random @ Child </button>
+			{/* <button onClick={this.triggerError}> Trigger Error @ Child </button> */}
+
+			<div className="counter">
+				<h1> counter: { this.state.seed + this.state.counter } </h1>
+			</div>
+			{/* <div id="error-component-placeholder">
+				<Error/>
+			</div> */}
+		</>);
+	}
+
+	// called after very first render
+	componentDidMount() {
+		console.log("\tcomponentDidMount() @ Child");
+	}
+
+	// called after every render except the very first one
+	componentDidUpdate(prevProps, prevState, snapShot) {
+		console.log("\tcomponentDidUpdate() @ Child");
+	}
+
+	componentWillUnmount() {
+		console.log("\tcomponentWillUnmount() @ Child");
+	}
+
+	// componentDidCatch(error, info) {
+	// 	console.log("\tcomponentDidCatch() @ Child :: error", error, "info", info);
+	// }
 }
 
-export default App;
+export {Counter};
