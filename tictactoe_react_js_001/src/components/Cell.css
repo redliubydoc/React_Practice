@@ -1,0 +1,18 @@
+.component-cell .cell {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100px;
+  width: 100px;
+  font-size: 64px;
+  
+  background-color: whitesmoke;
+  outline: 1px solid black;
+}
+
+.component-cell .cell.empty {
+  
+  cursor: pointer;
+}

@@ -1,0 +1,25 @@
+.component-controls .container-controls {
+
+  margin-top: 20px;
+  width: 300px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.component-controls #btn-xo,
+.component-controls #btn-reset,
+.component-controls #slt-hardness {
+
+  width: 98px;
+  height: 30px;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, .45);
+  background-color: var(--bg-primary-o);
+}

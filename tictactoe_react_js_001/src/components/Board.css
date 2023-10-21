@@ -1,0 +1,13 @@
+.component-board .board {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 300px;
+  height: 300px;
+
+  outline: 1px solid black;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, .45);
+}

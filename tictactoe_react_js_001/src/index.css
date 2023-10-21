@@ -1,0 +1,44 @@
+:root {
+  
+  --bg-primary-x: #f5deb3;
+  --bg-secondary-x: #ff0000;
+  --bg-primary-o: #add8e6;
+  --bg-secondary-o: #0000ff;
+  --tx-light: #000000;
+  --tx-dark: #ffffff;
+}
+
+* {
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Courier New', Courier, monospace;
+}
+
+*:disabled {
+
+  cursor: not-allowed !important;
+}
+
+
+.bg-primary-x {
+  
+  background-color: var(--bg-primary-x) !important;
+}
+
+.bg-primary-o {
+
+  background-color: var(--bg-primary-o) !important;
+}
+
+.tx-light {
+
+  color: var(--tx-light) !important;
+}
+
+.tx-dark {
+
+  color: var(--tx-dark) !important;
+}
