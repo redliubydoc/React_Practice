@@ -1,0 +1,60 @@
+.crpanel * {
+  /* border: 0.1px solid hotpink; */
+}
+
+.crpanel {
+
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+}
+
+.crpanel .rpanel {
+
+  padding: 20px;
+}
+
+.crpanel .birthday-alert {
+
+  display: flex;
+  align-items: center;
+}
+
+.crpanel .alert-icon {
+
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+}
+
+.crpanel .alert-message {
+
+  font-weight: 300;
+  line-break: anywhere;
+}
+
+.crpanel .alert-message b {
+
+  cursor: pointer;
+}
+
+
+.crpanel .alert-message b:hover {
+
+  text-decoration: underline;
+}
+
+.crpanel .container-ad {
+
+  margin: 30px 0px;
+}
+
+.crpanel .ad-image {
+
+  width: 100%;
+  border-radius:  5px;
+}
+
+.crpanel .conline-friends {
+
+  margin: 20px 0px;
+}

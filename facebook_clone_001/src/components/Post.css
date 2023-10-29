@@ -1,0 +1,291 @@
+.cpost * {
+  /* border: 0.1px solid hotpink; */
+}
+
+.cpost .container-post {
+
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.cpost .post-header {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.cpost .post-userimg {
+  margin-right: 20px;
+}
+
+.cpost .post-info {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.cpost .post-userimg img {
+
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+
+  /* status indicator */
+  padding: 1px;
+  outline: 2.5px solid #2b80e2;
+}
+
+.cpost .post-username {
+
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.cpost .post-time {
+
+  color: grey;
+}
+
+.cpost .post-menu {
+
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cpost .post-main {
+  margin-top: 20px;
+}
+
+.cpost .post-main .content-text {
+  font-weight: 300;
+}
+
+.cpost .post-main .content-image {
+  margin-top: 20px;
+}
+
+.cpost .post-main .content-image img {
+
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.cpost .post-footer {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 20px;
+  height: 30px;
+}
+
+.cpost .post-footer .post-actions {
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.cpost .post-footer .post-counts {
+
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cpost .post-footer .post-counts .like-count {
+
+  margin: 0px 5px;
+}
+
+.cpost .post-footer .post-counts > * {
+
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.cpost .post-footer .post-counts a {
+
+  color: grey;
+  text-decoration: none;
+}
+
+.cpost .post-footer .post-counts a:hover {
+
+  border-bottom: 1px dashed gray;
+}
+
+.cpost .post-footer .post-action img {
+
+  height: 24px;
+  width: 24px;
+  margin-right: 5px;
+  cursor: pointer;
+
+  transition-duration: 400ms;
+}
+
+.cpost .post-footer .post-action img:hover {
+
+  height: 40px;
+  width: 40px;
+}
+
+/*================================================
+  ** Style for dropdown
+==================================================*/
+
+/* .cpost .post-menu .dropdown-trigger.main {
+
+}
+*/
+.cpost .post-menu .dropdown-menu {
+
+  /* position: absolute;
+  right: 0px;
+  top: -999px;
+  opacity: 0;
+  pointer-events: none; */
+
+  width: 200px;
+  border-radius: 5px;
+  padding: 10px;
+
+  color: black;
+  background-color: white;
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.1);
+
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in;
+}
+/*
+
+.cpost .post-menu .dropdown-menu.share {
+
+  
+}
+
+*/
+.cpost .post-menu .dropdown-item {
+
+  display: flex;
+  align-items: center;
+
+  list-style: none;
+  height: 50px;
+  margin-bottom: 1px;
+  padding: 0px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cpost .post-menu .item-icon {
+  margin-right: 10px;
+}
+
+.cpost .post-menu .dropdown-item:hover {
+
+  background-color: #dadada;
+
+  transition-property: background-color;
+  transition-timing-function: ease-in;
+  transition-duration: 200ms;
+}
+
+.cpost .post-menu,
+.cpost .post-menu .dropdown-item.share {
+  position: relative;
+}
+
+.cpost .post-menu .dropdown-menu.main {
+
+  position: absolute;
+  right: 0px;
+  top: -999px;
+  opacity: 0;
+  pointer-events: none;
+
+  width: 200px;
+  border-radius: 5px;
+  padding: 10px;
+
+  color: black;
+  background-color: white;
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.1);
+
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in;
+}
+
+.dropdown-trigger.main {
+
+  padding-left: 20px;
+  padding-bottom: 20px;
+
+  cursor: pointer;
+}
+
+.cpost .post-menu .dropdown-trigger.main:hover + .dropdown-menu.main,
+.cpost .post-menu .dropdown-menu.main:hover {
+  
+  top: 20px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cpost .post-menu .dropdown-item.share .dropdown-menu.share {
+
+  position: absolute;
+  right: 0px;
+  top: -999px;
+  opacity: 0;
+  pointer-events: none;
+
+  width: 200px;
+  border-radius: 5px;
+  padding: 10px;
+
+  color: black;
+  background-color: white;
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.1);
+
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in;
+}
+
+.cpost .post-menu .dropdown-item.share:hover .dropdown-menu.share {
+
+  top: -50px;
+  right: 175px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 450px) {
+
+  .cpost .post-menu .dropdown-item.share:hover .dropdown-menu.share {
+
+    top: 50px;
+    left: 45px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

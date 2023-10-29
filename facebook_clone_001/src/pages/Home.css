@@ -1,0 +1,37 @@
+.chome .container-main {
+
+  display: flex;
+}
+
+.chome .clpanel {
+  flex: 2.5;
+}
+
+.chome .cfeed {
+  flex: 6;
+}
+
+.chome .crpanel {
+  flex: 3.5;
+}
+
+@media (max-width: 750px)  {
+  
+  .clpanel {
+
+    display: none !important;
+  }
+
+  .crpanel {
+
+    display: none !important;
+  }
+}
+
+@media (max-width: 1050px)  {
+  
+  .crpanel {
+
+    display: none !important;
+  }
+}

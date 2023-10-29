@@ -1,0 +1,10 @@
+.cfeed {
+  
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+}
+
+.cfeed .container-feed {
+
+  padding: 20px;
+}

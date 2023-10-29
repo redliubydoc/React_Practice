@@ -1,0 +1,100 @@
+.cpost-form * {
+
+  /* border: 0.1px solid hotpink; */
+}
+
+.cpost-form .container-form {
+
+  min-height: 170px;
+  padding: 20px;
+  border-radius: 5px;
+
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.cpost-form .form-header {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.cpost-form .header-img {
+
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+
+  /* status indicator */
+  padding: 1px;
+  outline: 2.5px solid #2b80e2;
+
+}
+
+.cpost-form .header-inp {
+
+  flex: 1;
+  border: none;
+  outline: none;
+} 
+
+.cpost-form .form-separator {
+
+  margin: 20px 0px;
+  color: #dadada;
+}
+
+.cpost-form .share-actions {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.cpost-form .share-action {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 20px ;
+  margin-bottom: 20px ;
+
+  cursor: pointer;
+}
+
+.cpost-form .action-icon {
+
+  margin-right: 5px;
+}
+
+.cpost-form .action-label {
+
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.cpost-form .wrapper-share-button {
+
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.cpost-form .share-button {
+
+  border: none;
+  padding: 7px 14px;
+  font-weight: 500;
+
+  background-color: #2b80e2;
+  color: white;
+
+  cursor: pointer;
+}
+

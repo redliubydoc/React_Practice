@@ -1,0 +1,56 @@
+.conline-friends .online-friends-title {
+
+  margin-bottom: 20px;
+}
+
+.conline-friends .online-friend {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  list-style: none;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+}
+
+.conline-friends .friend-dp {
+  position: relative;
+}
+
+.conline-friends .friend-dp img {
+
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+
+  /* status indicator */
+  padding: 1px;
+  outline: 2.5px solid lightgray;
+}
+
+.conline-friends .status-badge {
+
+  position: absolute;
+  bottom: -2px;
+  right: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.7rem;
+  font-weight: 900;
+  height: 0.9rem;
+  width: 0.9rem;
+  border-radius: 50%;
+  background-color: #5fff5f;
+  border: 2px solid white;
+}
+
+.conline-friends .friend-name {
+  font-weight: 500;
+}
