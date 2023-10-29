@@ -1,6 +1,6 @@
-.cpost * {
-  /* border: 0.1px solid hotpink; */
-}
+/* .cpost * {
+  border: 0.1px solid hotpink;
+} */
 
 .cpost .container-post {
 
@@ -174,14 +174,7 @@
   transition-duration: 0.25s;
   transition-timing-function: ease-in;
 }
-/*
 
-.cpost .post-menu .dropdown-menu.share {
-
-  
-}
-
-*/
 .cpost .post-menu .dropdown-item {
 
   display: flex;
